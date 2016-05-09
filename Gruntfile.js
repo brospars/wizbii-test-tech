@@ -426,6 +426,12 @@ module.exports = function (grunt) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
+      
+    // Lancement du serveur node proxy (CORS workaround)
+    grunt.util.spawn({
+        cmd:'node',
+        args:['proxy/proxy.js']
+    });
 
     grunt.task.run([
       'clean:server',

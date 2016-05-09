@@ -11,12 +11,15 @@ angular.module('wizbiiTechTestApp')
 .factory('wizbiiApiFactory', function ($http) {
     
     var wizbiiFactory = {};
+    var cors_proxy = 'http://127.0.0.1:8080/';
+    var wizbii_base_url = 'api.wizbii.com:443';
+    var proxied_api = cors_proxy+wizbii_base_url;
 
     wizbiiFactory.login = function (login, password) {
         
         var req = {
             method: 'POST',
-            url: 'https://api.wizbii.com/v1/account/validate',
+            url: proxied_api+'/v1/account/validate',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
@@ -41,7 +44,7 @@ angular.module('wizbiiTechTestApp')
         
         var req = {
             method: 'POST',
-            url: 'https://api.wizbii.com/v2/dashboard/',
+            url: proxied_api+'api.wizbii.com:443/v2/dashboard/',
             headers: {
                 'Authorization': token
             },
