@@ -44,7 +44,7 @@
             </div>
             <div class="publication-actions">
                 <div class="gridster-container">
-                    <div class="col m6 s12 publication-action" ng-click="likePost()">
+                    <div class="col m6 s12 publication-action" ng-click="likePost(feedItem.id)">
                         <div class="icon-action">
                             <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 
                         </div>
@@ -58,17 +58,38 @@
                     </div>                    
                 </div>
             </div>
-            <div class="publication-footer">
+            <div class="publication-footer" ng-init="footerMode='comment'">
                 <div class="publication-footer-menu">
                     <ul class="publication-tabs">
-                        <li>
+                        <li ng-click="footerMode = 'comment'" ng-class="footerMode === 'comment' ? 'active':''" >
                             {{feedItem.publication.comments.length}} commentaire{{feedItem.publication.comments.length > 1 ? 's' : ''}}
                         </li>
                         -
-                        <li>
+                        <li ng-click="footerMode = 'like'" ng-class="footerMode === 'like' ? 'active':''" >
                             {{feedItem.publication.likes.length}} thanx
                         </li>
                     </ul>
+                </div>
+                <div class="comments" ng-if="footerMode === 'comment'">
+                    <div class="gridster-container">
+                        <div class="comment col s12" ng-repeat="comment in feedItem.publication.comments">
+                            <div class="comment-image"><img ng-src="{{comment.profile.avatar}}"/></div>
+                            <div class="comment-body">
+                                <div class="post-author-name"><a href="#">{{comment.poster.displayName}}</a></div>
+                                <p ng-bind-html="formatText(comment.content)"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="likes" ng-if="footerMode === 'like'">
+                    <div class="gridster-container">
+                        <div class="comment col s12 m6" ng-repeat="like in feedItem.publication.likes">
+                            <div class="comment-image"><img ng-src="{{like.profile.avatar}}"/></div>
+                            <div class="comment-body">
+                                <div class="post-author-name"><a href="#">{{like.profile.name}}</a></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <form class="form-grayed" ng-submit="postComment()">
                     <textarea style="height: 52px;" rows="1" placeholder="Ajouter un commentaire..."></textarea>

@@ -13,13 +13,17 @@ angular.module('wizbiiTechTestApp')
     if(angular.isDefined(sessionStorage.userToken) && angular.isDefined(sessionStorage.currentUser)){
         $location.path('/dashboard');
     }
-        
+    
+    //submit form
     $scope.login = function(){
         
+        //check if data login are set
         if($scope.formData.login !== '' && $scope.formData.password !== ''){
             
+            //call wizbii api for login
             wizbiiApiFactory.login($scope.formData.login, $scope.formData.password)
-            .success(function(response) {
+            // if success store user in session and redirect to dashboard
+            .success(function(response) { 
                 if(angular.isDefined(response['access-token'])){
                     sessionStorage.userToken = response['access-token'];
                     sessionStorage.currentUser = JSON.stringify(response.profile);
@@ -27,8 +31,9 @@ angular.module('wizbiiTechTestApp')
                     $location.path('/dashboard');
                     
                 }
+            // if error display an error message
             }).error(function(response) {
-                console.log(response);
+                swal("Hum..", "Une erreur s'est produite : "+response.error, "error");
             });
             
         }

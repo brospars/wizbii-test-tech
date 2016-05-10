@@ -8,8 +8,9 @@
  * Controller of the wizbiiTechTestApp
  */
 angular.module('wizbiiTechTestApp')
-.controller('DashboardCtrl', function ($scope, $location, wizbiiApiFactory) {
+.controller('DashboardCtrl', function ($scope, $location, $filter, wizbiiApiFactory) {
     
+    //if user is set call dashboard api else redirect to login
     if(angular.isDefined(sessionStorage.userToken) && angular.isDefined(sessionStorage.currentUser)){
         
         wizbiiApiFactory.dashboard()
@@ -27,14 +28,30 @@ angular.module('wizbiiTechTestApp')
         $location.path('/');
     }
     
+    //Add a comment to a post
     $scope.postComment = function(){
-        swal("Posté!", "Ton commentaire a été envoyé", "success");
+        swal("Posté!", "Ton (faux) commentaire a été envoyé", "success");
     };
     
-    $scope.likePost = function(){
-        swal("Envoyé!", "Ton Thanx a bien été envoyé", "success");
+    //Add a like to a post
+    $scope.likePost = function(postid){
+        
+        var newLike = {
+            'date_created': new Date().toISOString(),
+            'liker_id':$scope.currentUser.id,
+            'liker_type':'profile',
+            profile : $scope.currentUser
+        };
+        
+        var post = $filter('filter')($scope.feedItems, {id: postid})[0];
+        console.log('like '+postid);
+        //Add like unless it's alreay liked (push directly into array not truly added)
+        if(!$filter('filter')(post.publication.likes, {'liker_id': $scope.currentUser.id}).length > 0){
+            post.publication.likes.push(newLike);
+        }
     };
     
+    //display a modal with share buttons
     $scope.sharePost = function(postid){
         var url = 'http://wizbii.com/publication/'+postid;
         swal({
@@ -47,6 +64,7 @@ angular.module('wizbiiTechTestApp')
         });
     };
     
+    //format post text with html and links
     $scope.formatText = function(text){
         text = text.replace(/\n/g, "<br/>");
         
@@ -57,12 +75,13 @@ angular.module('wizbiiTechTestApp')
         });
     };
     
+    //retrieve poster image (company or profile)
     $scope.getPosterAvatar = function(publication){
         var posterType = publication['poster_type'];
         
-        if(posterType == 'COMPANY'){
+        if(posterType === 'COMPANY'){
             return publication.company.logo;
-        }else if(posterType == 'PROFILE'){
+        }else if(posterType === 'PROFILE'){
             return publication.profile.avatar;
         }
         

@@ -10,6 +10,7 @@
 angular.module('wizbiiTechTestApp')
 .controller('NavbarCtrl', function ($scope,$location) {
     
+    //empty session and redirect to login
     $scope.logout = function(){
         sessionStorage.removeItem('userToken');
         sessionStorage.removeItem('currentUser');
