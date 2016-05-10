@@ -1,0 +1,52 @@
+<div class="view-wrapper dashboard-view-wrapper">
+    <div class="gridster-container">
+        <div class="spinner" ng-if="feedItems==undefined">
+            <svg width="38" height="38" viewBox="0 0 39 39" xmlns="http://www.w3.org/2000/svg" stroke="#1ba3e1">
+                <g fill="none" fill-rule="evenodd">
+                    <g transform="translate(1 1)" stroke-width="2">
+                        <circle stroke-opacity=".5" cx="18" cy="18" r="18"/>
+                        <path d="M36 18c0-9.94-8.06-18-18-18">
+                            <animateTransform
+                                attributeName="transform"
+                                type="rotate"
+                                from="1 18 18"
+                                to="360 18 18"
+                                dur="1s"
+                                repeatCount="indefinite"/>
+                        </path>
+                    </g>
+                </g>
+            </svg>
+        </div>
+        <div class="publication-item col s12" ng-repeat="feedItem in feedItems" ng-if="feedItem.publication!==undefined">
+            <div class="publication-header">
+                <img class="profile-avatar" ng-src="{{getPosterAvatar(feedItem.publication)}}" />
+                <div class="post-info">
+                    <div class="post-author-name"><a href="#">{{feedItem.publication.poster.displayName}}</a></div>
+                    <format-date class="post-date" date="{{feedItem.date}}"></format-date>
+                    <div class="post-author-title"></div>
+                </div>
+            </div>
+            <div class="publication-body">
+                <ul class="post-tags">
+                    <li ng-repeat="tag in feedItem.publication.tags">#{{tag.name}} </li>
+                </ul>
+                <div class="post-content" ng-bind-html="formatText(feedItem.publication.content)"></div>
+            </div>
+            <div class="post-attachment" ng-if="feedItem.publication.attachment_title!==undefined">
+                <a href="{{feedItem.publication.attachment_link}}">
+                    <img ng-src="{{feedItem.publication.attachment_picture}}" ng-if="feedItem.publication.attachment_picture!==undefined" />
+                    <div class="post-attachment-infos">
+                        <div class="post-attachment-title">{{feedItem.publication.attachment_title | limitTo: 40 }}{{feedItem.publication.attachment_title.length > 40 ? '...' : ''}}</div>
+                        <p>{{feedItem.publication.attachment_content | limitTo: 70 }}{{feedItem.publication.attachment_content.length > 70 ? '...' : ''}}</p>
+                    </div>
+                </a>
+            </div>
+            <div class="publication-actions">
+            </div>
+            <div class="publication-footer">
+            </div>
+        </div>
+    </div>
+</div>
+

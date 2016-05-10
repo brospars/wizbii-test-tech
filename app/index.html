@@ -12,6 +12,9 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" 
+          integrity="sha384-aNUYGqSUL9wG/vP7+cWZ5QOM4gsQou3sBfWRr/8S3R1Lv0rysEmnwsRKMbhiQX/O" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/gridster.min.css">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 </head>
@@ -20,6 +23,14 @@
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    
+    <header class="topbar" ng-controller="NavbarCtrl">
+        <ul class="topbar-right">
+            <li><a href=""><i class="fa fa-user" aria-hidden="true"></i> Profil</a></li>
+            <li><a href="" ng-click="logout()"><i class="fa fa-lock" aria-hidden="true"></i> Logout</a></li>
+        </ul>
+    </header>
+    
     <div class="container">
         <div ng-view=""></div>
     </div>
@@ -40,6 +51,9 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/services/wizbiiapifactory.js"></script>
+    <script src="scripts/controllers/dashboard.js"></script>
+    <script src="scripts/directives/formatdate.js"></script>
+    <script src="scripts/controllers/navbar.js"></script>
     <!-- endbuild -->
 </body>
 

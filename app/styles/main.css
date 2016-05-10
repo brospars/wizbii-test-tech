@@ -1,0 +1,226 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+
+*, 
+*::before, 
+*::after {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+body{
+    font-size: 16px;
+    font-family: "Roboto",sans-serif;
+    line-height: 1.4;
+    font-weight: 300;
+    color: #545d61;
+    background:#F5F5F5;
+}
+
+/* Nav bar */
+.topbar {
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #efefef;
+    box-shadow: 0 2px 0 #efefef;
+}
+
+.topbar-right{
+    list-style: none;
+    float:right;
+}
+
+.topbar-right li{
+    display: inline-block;
+}
+
+
+.topbar-right li a{
+    display: block;
+    padding: 0px 15px;
+    line-height: 60px;
+}
+
+
+.topbar-right li a:hover{
+    background: #efefef;
+}
+
+
+.topbar-right li i{
+    font-size: 25px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+
+/* Login */
+.main-view-wrapper{
+    width:95%;
+    max-width: 580px;
+    margin: 0 auto;
+    padding: 80px 0;
+}
+
+.login-form{
+    position: relative;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.login-form h2{
+    margin-top:.5em;
+    margin-bottom:2em;
+    text-align: center;
+}
+
+.login-form input{
+    display: block;
+    width: 100%;
+    padding:.5em 1em;
+    margin: .5em;
+    color: #545d61;
+    background-color: #f5f5f5;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 6px;
+}
+
+.login-form input[type="submit"]{
+    padding: .5em;
+    margin-top: 1em;
+    background:#67c1ea;
+    color:white;
+    font-size:1.2em;
+    cursor: pointer;
+}
+
+
+/* Dashboard */
+
+.spinner{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%) scale(1.5);
+    text-align: center;
+}
+
+.dashboard-view-wrapper{
+    width:95%;
+    max-width: 580px;
+    margin: 0 auto;
+    padding: 80px 0;
+}
+
+.publication-item{
+    position: relative;
+    margin-bottom: 20px;
+    padding: 20px 0;
+    background-color: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.publication-header,
+.publication-body{
+    padding:0px 20px;
+}
+
+.publication-header .profile-avatar{
+    width:40px;
+    height:40px;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+
+.post-info{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.post-author-name{
+    font-weight: 400;
+    color: #1ba3e1;
+}
+
+.post-author-name:hover{
+    color: #1794cd;
+}
+
+.post-date{
+    font-size:0.9em;
+    color: #9da1a3;
+}
+
+.post-tags{
+    list-style: none;
+    padding: 0;
+    margin: 0.5em 0;
+}
+
+.post-tags li{
+    display: inline-block;
+    color:#333;
+    font-size: .9em;
+    font-weight: 400;
+    margin-right: .5em;
+}
+
+.post-content a{
+    color: #1ba3e1;
+}
+
+.post-content a:hover{
+    color: #1794cd;
+}
+
+.post-attachment{
+    position: relative;
+    min-height: 80px;
+    margin-top: .5em;
+}
+
+.post-attachment img{
+    width:100%;
+    height:auto;
+}
+
+.post-attachment-infos{
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    max-height: 80%;
+    overflow: hidden;
+    color: #fff;
+    padding: 10px;
+    line-height: 1.2;
+    background-color: rgba(84,93,97,0.45);
+}
+
+.post-attachment-title{
+    font-weight: 400;
+}
+
+.post-attachment-infos p{
+    margin:0;
+}
+
+
+
+
+
