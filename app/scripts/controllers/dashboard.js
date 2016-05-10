@@ -27,6 +27,26 @@ angular.module('wizbiiTechTestApp')
         $location.path('/');
     }
     
+    $scope.postComment = function(){
+        swal("Posté!", "Ton commentaire a été envoyé", "success");
+    };
+    
+    $scope.likePost = function(){
+        swal("Envoyé!", "Ton Thanx a bien été envoyé", "success");
+    };
+    
+    $scope.sharePost = function(postid){
+        var url = 'http://wizbii.com/publication/'+postid;
+        swal({
+          title: "Partager la publication",
+          text: '<a href="http://twitter.com/share?url='+url+'" target="_blank" class="share-btn twitter"><i class="fa fa-twitter"></i></a>'+
+                '<a href="https://plus.google.com/share?url='+url+'" target="_blank" class="share-btn google-plus"><i class="fa fa-google-plus"></i></a>'+
+                '<a href="http://www.facebook.com/sharer/sharer.php?u=http://www.agori.fr/2016/05/09/le-projet-de-reforme-du-code-du-travail-en-discussion-au-parlement/" target="_blank" class="share-btn facebook"><i class="fa fa-facebook"></i></a>'+
+                '<a href="http://www.linkedin.com/shareArticle?url='+url+'" target="_blank" class="share-btn linkedin"><i class="fa fa-linkedin"></i></a>',
+          html: true
+        });
+    };
+    
     $scope.formatText = function(text){
         text = text.replace(/\n/g, "<br/>");
         

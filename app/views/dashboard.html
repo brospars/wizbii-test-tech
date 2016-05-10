@@ -33,7 +33,7 @@
                 </ul>
                 <div class="post-content" ng-bind-html="formatText(feedItem.publication.content)"></div>
             </div>
-            <div class="post-attachment" ng-if="feedItem.publication.attachment_title!==undefined">
+            <div class="post-attachment" ng-class="feedItem.publication.attachment_picture==undefined ? 'no-thumb' : ''" ng-if="feedItem.publication.attachment_title!==undefined">
                 <a href="{{feedItem.publication.attachment_link}}">
                     <img ng-src="{{feedItem.publication.attachment_picture}}" ng-if="feedItem.publication.attachment_picture!==undefined" />
                     <div class="post-attachment-infos">
@@ -43,8 +43,37 @@
                 </a>
             </div>
             <div class="publication-actions">
+                <div class="gridster-container">
+                    <div class="col m6 s12 publication-action" ng-click="likePost()">
+                        <div class="icon-action">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 
+                        </div>
+                        Envoyer un Thanks !
+                    </div>                    
+                    <div class="col m6 s12 publication-action" ng-click="sharePost(feedItem.id)">
+                        <div class="icon-action">
+                            <i class="fa fa-share" aria-hidden="true"></i> 
+                        </div>
+                        Partager
+                    </div>                    
+                </div>
             </div>
             <div class="publication-footer">
+                <div class="publication-footer-menu">
+                    <ul class="publication-tabs">
+                        <li>
+                            {{feedItem.publication.comments.length}} commentaire{{feedItem.publication.comments.length > 1 ? 's' : ''}}
+                        </li>
+                        -
+                        <li>
+                            {{feedItem.publication.likes.length}} thanx
+                        </li>
+                    </ul>
+                </div>
+                <form class="form-grayed" ng-submit="postComment()">
+                    <textarea style="height: 52px;" rows="1" placeholder="Ajouter un commentaire..."></textarea>
+                    <button>Envoyer</button>
+                </form>
             </div>
         </div>
     </div>
