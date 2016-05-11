@@ -33,7 +33,7 @@ angular.module('wizbiiTechTestApp')
                 }
             // if error display an error message
             }).error(function(response) {
-                swal("Hum..", "Une erreur s'est produite : "+response.error, "error");
+                swal("Hum..", "Une erreur s'est produite", "error");
             });
             
         }

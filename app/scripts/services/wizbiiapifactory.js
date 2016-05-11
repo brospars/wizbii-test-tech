@@ -11,7 +11,7 @@ angular.module('wizbiiTechTestApp')
 .factory('wizbiiApiFactory', function ($http) {
     
     var wizbiiFactory = {};
-    var corsProxy = 'http://127.0.0.1:8080/';
+    var corsProxy = 'http://5.196.94.31:8080/'; //kimsufi ip
     var wizbiiBaseUrl = 'api.wizbii.com:443';
     var proxiedUrl = corsProxy+wizbiiBaseUrl;
 

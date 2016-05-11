@@ -15,9 +15,7 @@ angular.module('wizbiiTechTestApp')
         
         wizbiiApiFactory.dashboard()
         .success(function(response) {
-            console.log(response);
             $scope.feedItems = response['feed_items']['feed_items'];
-            console.log($scope.feedItems);
         }).error(function(response) {
             console.log(response);
         });
