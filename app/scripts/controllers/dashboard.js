@@ -44,9 +44,9 @@ angular.module('wizbiiTechTestApp')
         };
         
         var post = $filter('filter')($scope.feedItems, {id: postid})[0];
-        console.log('like '+postid);
+        
         //Add like unless it's alreay liked (push directly into array not truly added)
-        if(!$filter('filter')(post.publication.likes, {'liker_id': $scope.currentUser.id}).length > 0){
+        if(!$filter('filter')(post.publication.likes, {'liker_id': $scope.currentUser._id}).length > 0){
             post.publication.likes.push(newLike);
         }
     };
